@@ -1,0 +1,22 @@
+<!--pages/task/task.wxml-->
+<view>
+
+ <scroll-view scroll-y="true" height="100%">
+  <block wx:for="{{array}}">
+  <navigator url="../detail/detail?type={{item.type}}&customerName={{item.customerName}}&address={{item.address}}&mobileNumber={{item.mobileNumber}}&spouseName={{item.spouseName}}&spouseTel={{item.spouseTel}}&point={{item.point}}&id={{item.id}}&status={{item.status}}">
+    <view class='item'>
+    <image class="poster" src='/images/def_head.png'></image>
+     <view class="meta">
+    <text class='text-item'>{{item.customerName}}</text>
+    <text class='text-item1'>{{item.address}}</text>
+    <text class='text-item1'>{{item.mobileNumber}}</text>
+    </view>
+     <view class="rating">
+        <text></text>
+      </view>
+    </view>
+
+  </navigator>
+   </block>
+ </scroll-view>
+</view>

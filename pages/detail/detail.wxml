@@ -1,0 +1,50 @@
+<!--pages/detail/detail.wxml-->
+<view>
+  <view>
+    <view class='line'></view>
+    <text class='text'>调查类型：{{detail.type}}</text>
+    <view class='line'></view>
+    <text class='text'>客户名称：{{detail.customerName}}</text>
+    <view class='line'></view>
+    <text class='text'>客户地址：{{detail.address}}</text>
+    <view class='line'></view>
+    <text class='text'>电话：{{detail.mobileNumber}}</text>
+    <view class='line'></view>
+    <text class='text'>配偶名称：{{detail.spouseName}}</text>
+    <view class='line'></view>
+    <text class='text'>配偶电话：{{detail.spouseTel}}</text>
+    <view class='line'></view>
+    <view class='opion'>
+      <text class='text'>调查要点</text>
+      <text class='point-text'>{{detail.point}}</text>
+    </view>
+
+  </view>
+  <view class='form'>
+    <form bindsubmit='goSubmit'> 
+    <input name="id" hidden='true' value='{{detail.id}}'></input>
+    <view wx:if="{{detail.status == 8}}">
+      <button type="primary" form-type='submit'>分配</button>
+    </view>
+     <view wx:if="{{detail.status == 0}}">
+      <button type="primary" form-type='submit'>继续调查</button>
+    </view>
+     <view wx:if="{{detail.status == 1}}">
+      <button type="primary" form-type='submit'>继续调查</button>
+    </view>
+    <view wx:if="{{detail.status == 2}}">
+      <button type="primary" form-type='submit'>查看调查</button>
+    </view>
+
+      <view wx:if="{{detail.status == 3}}">
+      <button type="primary" form-type='submit'>查看调查</button>
+    </view>
+
+     <view wx:if="{{detail.status == 4}}">
+      <button type="primary" form-type='submit'>查看调查</button>
+    </view>
+    
+    </form>
+   
+  </view>
+</view>

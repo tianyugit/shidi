@@ -1,0 +1,251 @@
+<!--pages/survey/survey.wxml-->
+<view class='body'>
+  <view  class='content'>
+
+    <!-- 地址签到模块开始 -->
+    <map class="myMap " id="myMap" longitude="{{longitude}}" latitude="{{latitude}}" markers="{{markers}}" bindmarkertap="markertap" show-location enable-rotate="true" enable-overlooking="true" enable-zoom="true" show-compass="true" controls="{{mapControls}}"
+      bindcontroltap="mapControlTap" bindregionchange="regionChanged" bindtap="mapTap" hidden="{{tap_status.status_map == false ? false : true}}">
+      <cover-view class='mylocation' hidden="{{tap_status.status_map == false ? false : true}}">
+        当前位置：{{location}}
+      </cover-view>
+      <!-- <cover-view class='cover'>
+<cover-image class='cover-image' src='/images/location.png' bindtap='getLocation'></cover-image>
+</cover-view>
+<cover-view class='cover-marker'>
+<cover-image  src='/images/place2.png' bindtap='getNewLocation'></cover-image>
+</cover-view> -->
+    </map>
+    <!-- 地址签到模块结束 -->
+    <!-- 调查图片模块开始 -->
+    <scroll-view scroll-y="true" hidden="{{tap_status.status_pic == false ? false : true}}">
+      <!-- 公司外景 -->
+      <view id="comp" class='box' hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_comp}}'></image>
+        <text class='text-box'>公司外景</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.comp_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_comp" src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+          
+        </view>
+        <view class="block">
+          <block wx:for="{{src_comp}}" class="block_nei">
+
+              <image class='addpic' src='{{item}}' data-index="comp_{{index}}" bindtap="previewImage" bindlongpress='deleteImg'></image>
+<text class='addpic_text'>未上传</text>
+          </block>
+        </view>
+      </view>
+      <!-- 门楣照 -->
+      <view class='line'></view>
+
+       <view class='box' id="door" hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_door}}'></image>
+        <text class='text-box'>门楣照</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.door_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_door" src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src_door}}">
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+          </block>
+        </view>
+      </view>
+
+      <!-- 营业场所 -->
+      <view class='line'></view>
+ 
+       <view class='box' id="business" hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_business}}'></image>
+        <text class='text-box'>营业场所</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.business_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_business" src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src_business}}">
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+          </block>
+        </view>
+      </view>
+
+      <!-- 单据 -->
+      <view class='line'></view>
+
+       <view class='box' id="doc" hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_doc}}'></image>
+        <text class='text-box'>单据</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.doc_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_doc" src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src_doc}}">
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+          </block>
+        </view>
+      </view>
+
+      <!-- 产品 -->
+      <view class='line'></view>
+
+       <view class='box' id="product" hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_product}}'></image>
+        <text class='text-box'>产品</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.product_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_product"  src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src_product}}">
+            <!-- <block wx:if="{{index % 5 == 0}}">
+           <view></view>
+          </block> -->
+   
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+
+          </block>
+        </view>
+      </view>
+
+      <!-- 其它 -->
+      <view class='line'></view>
+
+       <view class='box' id="other" hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image.image_other}}'></image>
+        <text class='text-box'>其它</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status.other_status  == false ? false : true}}'>
+        <view class='addPics'>
+          <image class='addpic' id="take_other" src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src_other}}">
+            <!-- <block wx:if="{{index % 5 == 0}}">
+           <view></view>
+          </block> -->
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+          </block>
+        </view>
+      </view>
+
+    </scroll-view>
+    <!-- 调查图片模块结束 -->
+    <!-- 调查内容模块开始 -->
+    <!-- <view hidden='{{tap_status.status_con == false ? false : true}}'>
+    <web-view class='myMap' src="{{link}}" hidden='{{tap_status.status_con == false ? false : true}}' ></web-view>
+    </view>  -->
+
+    <!-- 调查内容模块结束 -->
+    <!-- 调查录音模块开始 -->
+    <view hidden="{{tap_status.status_rec == false ? false : true}}">
+      <!-- 后台录音列表 -->
+      <view>
+        <block wx:for="{{audios_list}}">
+          <view class='music-block' bindlongtap="deleteRecordByUpload" bindtap='playRecord' id="id_{{index}}">
+            <image class='music' src='/images/music.png'></image>
+            <text bindlongtap="deleteRecord">已上传-{{item.name}}</text>
+            <input name="path" value='{{item.path}}' hidden='true' id='path'></input>
+          </view>
+        </block>
+      </view>
+
+      <form bindsubmit='uploadRecord'>
+
+
+        <block wx:for="{{record_list}}">
+          <view class='music-block' bindlongpress="deleteRecord" bindtap='playRecord' id="id_{{index}}">
+            <!-- <input value='{{index}}' hidden='true' data-text="{{index}}" id="{{index}}"></input> -->
+            <image class='music' src='/images/music.png'></image>
+            <text bindlongpress="deleteRecord">{{item.record_status}}-{{item.name}}</text>
+            <input name="path" value='{{item.path}}' hidden='true' id='path'></input>
+          </view>
+        </block>
+        <view class='form-foot'>
+          <button class='button' form-type='submit' type="default">上传录音</button>
+        </view>
+
+      </form>
+    </view>
+    <!-- 调查录音模块结束 -->
+    <!-- 提交调查报告开始 -->
+    <view hidden='{{tap_status.status_sur == false ? false : true}}'>
+
+      <form bindsubmit='submitRur'>
+        <view class='sur_text'>综合评价：</view>
+        <textarea name="textarea" class='textarea' placeholder="请输入评价"></textarea>
+
+        <view class='form-foot'>
+          <button class='button' form-type='submit'>提交调查</button>
+        </view>
+      </form>
+    </view>
+    <!-- 提交调查报告结束 -->
+    <!-- 审批报告开始 -->
+    <!-- 审批报告结束 -->
+  </view>
+  <!-- 下面按钮布局开始 -->
+  <view class='foot'>
+
+    <view class='myItem' bindtap='changeTap' id='map'>
+      <image class='mapPic' src='/images/icn_1.png'></image>
+      <text class='myText'>地址签到</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem' id='pic' bindtap='changeTap'>
+      <image class='mapPic' src='/images/icn_3.png'></image>
+      <text class='myText'>调查图片</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem' id='con' bindtap='changeTap'>
+      <image class='mapPic' src='/images/icn_2.png'></image>
+      <text class='myText'>调查内容</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem' id='rec' bindtap='changeTap'>
+      <image class='mapPic' src='/images/icn_7.png'></image>
+      <text class='myText'>调查录音</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem' id='sur' bindtap='changeTap'>
+      <image class='mapPic' src='/images/icn_4.png'></image>
+      <text class='myText'>提交调查</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem' id='appr' bindtap='goApproval'>
+      <image class='mapPic' src='/images/icn_2.png'></image>
+      <text class='myText'>审批报告</text>
+    </view>
+    <view class='line2'></view>
+    <view class='myItem'>
+      <image class='mapPic' src='/images/{{record_image}}' bindtap='getRecord'></image>
+      <text class='myText'>0:0:0</text>
+    </view>
+
+  </view>
+  <!-- 下面按钮布局结束 -->
+
+</view>

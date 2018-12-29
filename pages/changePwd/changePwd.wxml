@@ -1,0 +1,14 @@
+<!--pages/changePwd/changePwd.wxml-->
+
+<view class='body'>
+<form bindsubmit='goChangePwd'>
+<view class='line'></view>
+<input class='input' name="oldPwd" id='oldPwd' type="text" placeholder="原密码"/>
+<view class='line'></view>
+<input class='input' name="newPwd" id="" type="text" placeholder="新密码" password="true"/>
+<view class='line'></view>
+<input class='input' name="confirmPwd" type="text" placeholder="原密码确认" password="true"/>
+<view class='line'></view>
+<button form-type='submit' type="primary">修改密码</button>
+</form>
+</view>

@@ -1,0 +1,20 @@
+/* pages/changePwd/changePwd.wxss */
+.body{
+  background-color: #f4f4f4;
+  width: 100%;
+  height: 1500rpx
+}
+
+.input{
+  width: 100%;
+  height: 80rpx;
+  border-color: #a6dcff;
+  background-color: #ffffff;
+  border-collapse: separate;
+}
+
+.line{
+   background-color: #f4f4f4;
+    width: 100%;
+    height: 60rpx
+}

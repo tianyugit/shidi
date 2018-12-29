@@ -1,0 +1,18 @@
+  <view class="head">
+    <image class='title' src='/images/ic_logo.png'></image>
+  </view>
+
+<view class="body">
+    <scroll-view scroll-y="true" height="100%">
+      <block wx:for="{{menu}}">
+        <navigator url="../task/task?status={{item.status}}">
+          <view class="list-item">
+            <view class="item-info">
+              <image class='list-img' src="/images/item.png" mode="aspectFill" />
+              <text class="item-name">{{item.name}}</text>
+            </view>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+  </view>

@@ -1,0 +1,23 @@
+  <view class="head">
+    <image class='title' src='/images/ic_logo.png'></image>
+  </view>
+
+<view class='body'>
+  <navigator url='../changePwd/changePwd'>
+    <view class="list-item">
+      <view class="item-info">
+        <image class='list-img' src="/images/setting.png" mode="aspectFill" />
+        <text class="item-name">修改密码</text>
+      </view>
+    </view>
+  </navigator>
+<form bindsubmit='goLogout'>
+    <view class="list-item">
+      <view class="item-info">
+        <image class='list-img' src="/images/logout.png" mode="aspectFill" />
+        <label class="item-name" for='button'>注销用户</label>
+        <button id='button' hidden='true' form-type='submit' ></button>
+      </view>
+    </view>
+</form>
+</view>

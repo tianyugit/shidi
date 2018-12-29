@@ -1,0 +1,23 @@
+<!--pages/test/test.wxml-->
+   <view class='box' hover-class="box-hover" hover-stay-time="500" bindtap='changeImg'>
+        <image class='img-box' src='/images/{{image}}'></image>
+        <text class='text-box'>公司外景</text>
+      </view>
+
+      <view class='line'></view>
+
+      <view hidden='{{status}}'>
+        <view class='addPics'>
+          <image class='addpic' src='/images/gridview_addpic.png' bindtap='goTakePic'></image>
+        </view>
+        <view class="block">
+          <block wx:for="{{src}}">
+          <!-- <block wx:if="{{index % 5 == 0}}">
+           <view></view>
+          </block> -->
+            <navigator url=''>
+              <image class='addpic' src='{{item}}' data-index="{{index}}" bindtap="previewImage"></image>
+            </navigator>
+          </block>
+        </view>
+      </view>
